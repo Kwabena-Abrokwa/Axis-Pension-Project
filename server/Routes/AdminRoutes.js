@@ -10,7 +10,7 @@ import {
 } from "../Controller/EmployeesController.js";
 
 const storage = multer.diskStorage({
-	destination: "../candidates images",
+	destination: "../../client/src/Assets/Employees",
 	filename: function (req, file, cb) {
 		const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
 		return cb(null, uniqueSuffix + file.originalname);
