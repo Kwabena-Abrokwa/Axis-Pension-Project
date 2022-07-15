@@ -10,8 +10,8 @@ function App() {
 		<Suspense
 			fallback={
 				<div className="w-screen h-screen">
-					<div className=" mt-96">
-						<h3>Loading...</h3>
+					<div className="mt-96">
+						<h3 className="text-center text-3xl">Loading...</h3>
 					</div>
 				</div>
 			}
@@ -19,10 +19,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Login />} />
 				<Route path="/dashboard" element={<HomeDashboard />} />
-				<Route
-					path="/employee-profile/:id"
-					element={<EmployeeProfile />}
-				/>
+				<Route path="/employee-profile/:id" element={<EmployeeProfile />} />
 			</Routes>
 		</Suspense>
 	);

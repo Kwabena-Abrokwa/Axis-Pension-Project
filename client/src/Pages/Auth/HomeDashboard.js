@@ -5,6 +5,7 @@ import TableComponent from "../../Components/Customs/TableComponent";
 import DashboardLayout from "../../Components/Layout/DashboardLayout";
 import CustomSelect from "../../Components/Customs/CustomSelect";
 import { MdClose } from "react-icons/md";
+import { BACKEND_URL } from "../../API/URL";
 import axios from "axios";
 
 const HomeDashboard = () => {
@@ -42,7 +43,6 @@ const HomeDashboard = () => {
 			[event.target.name]: event.target.value,
 		});
 		setmessage("");
-		console.log(data);
 	};
 
 	const handleImage = (event) => {
@@ -79,7 +79,7 @@ const HomeDashboard = () => {
 			return null;
 		}
 		axios
-			.post("http://localhost:8081/api/admin/createEmployeeBio", data, {
+			.post(`${BACKEND_URL}/createEmployeeBio`, data, {
 				headers: {
 					"Content-Type": "multipart/form-data",
 				},
@@ -107,7 +107,7 @@ const HomeDashboard = () => {
 	//get all employees here
 	const getAllEmployees = async () => {
 		await axios
-			.get("http://localhost:8081/api/admin/getAllEmployees")
+			.get(`${BACKEND_URL}/getAllEmployees`)
 			.then(({ data }) => {
 				if (data.success === false) {
 					setmessage(data.message);

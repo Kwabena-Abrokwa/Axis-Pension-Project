@@ -6,6 +6,7 @@ import CustomButton from "../../Components/Customs/CustomButton";
 import CustomInput from "../../Components/Customs/CustomInput";
 import { MdClose } from "react-icons/md";
 import CustomSelect from "../../Components/Customs/CustomSelect";
+import { BACKEND_URL } from "../../API/URL";
 
 const EmployeeProfile = () => {
 	const { id } = useParams();
@@ -43,13 +44,12 @@ const EmployeeProfile = () => {
 			[event.target.name]: event.target.value,
 		});
 		setmessage("");
-		console.log(data);
 	};
 
 	//get all employees here
 	const getSingleEmployee = async () => {
 		await axios
-			.get(`http://localhost:8081/api/admin/getSingleEmployee/${id}`)
+			.get(`${BACKEND_URL}/getSingleEmployee/${id}`)
 			.then(({ data }) => {
 				if (data.success === false) {
 					return null;
@@ -64,7 +64,7 @@ const EmployeeProfile = () => {
 
 	const getAppointmentDetails = async () => {
 		await axios
-			.get(`http://localhost:8081/api/admin/getAppointmentDetails/${id}`)
+			.get(`${BACKEND_URL}/getAppointmentDetails/${id}`)
 			.then(({ data }) => {
 				if (data.success === false) {
 					return null;
@@ -99,7 +99,7 @@ const EmployeeProfile = () => {
 		}
 		axios
 			.post(
-				"http://localhost:8081/api/admin/createEmployeeEmploymentDetails",
+				`${BACKEND_URL}/createEmployeeEmploymentDetails`,
 				data
 			)
 			.then(({ data }) => {
