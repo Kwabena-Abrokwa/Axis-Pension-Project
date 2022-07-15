@@ -28,6 +28,9 @@ const Login = () => {
 	const handleLogin = async (e) => {
 		e.preventDefault();
 		setloader(true);
+		if (data.admin_name === "" || data.password === "") {
+			setmessage("All fields are required");
+		}
 		await axios
 			.post(`${BACKEND_URL}/loginAdmin`, data)
 			.then(({ data }) => {
@@ -39,11 +42,12 @@ const Login = () => {
 				} else {
 					setmessage(data.message);
 					setcolor("red");
+					setloader(false);
 				}
 			})
 			.catch((err) => {
 				console.log(err);
-                setloader(false);
+				setloader(false);
 			});
 	};
 
