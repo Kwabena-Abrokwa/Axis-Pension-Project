@@ -30,6 +30,7 @@ const Login = () => {
 		setloader(true);
 		if (data.admin_name === "" || data.password === "") {
 			setmessage("All fields are required");
+			return null;
 		}
 		await axios
 			.post(`${BACKEND_URL}/loginAdmin`, data)
