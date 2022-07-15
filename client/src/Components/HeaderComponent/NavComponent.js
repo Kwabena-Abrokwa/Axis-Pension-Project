@@ -1,10 +1,18 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const NavComponent = () => {
 	const [userControl, setUserControl] = useState(false);
 
+	const navigate = useNavigate();
+
 	const handleUserControl = () => {
 		setUserControl(!userControl);
+	};
+
+	const handleLogout = () => {
+		localStorage.clear();
+		navigate("/");
 	};
 
 	return (
@@ -18,7 +26,10 @@ const NavComponent = () => {
 				</div>
 				{userControl ? (
 					<div className="absolute h-16 top-20 w-56 border rounded-lg">
-						<button className="w-11/12 mx-auto bg-red-600 block p-2 my-3 text-white">
+						<button
+							className="w-11/12 mx-auto bg-red-600 block p-2 my-3 text-white"
+							onClick={handleLogout}
+						>
 							Logout
 						</button>
 					</div>

@@ -14,6 +14,10 @@ const Login = () => {
 
 	const navigate = useNavigate();
 
+	const [loader, setloader] = useState(false);
+	const [message, setmessage] = useState("");
+	const [color, setcolor] = useState("red");
+
 	const handleChange = (event) => {
 		setdata({
 			...data,
@@ -23,14 +27,18 @@ const Login = () => {
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
-
+		setloader(true);
 		await axios
 			.post(`${BACKEND_URL}/loginAdmin`, data)
 			.then(({ data }) => {
 				if (data.auth === 1) {
+					setloader(false);
 					localStorage.setItem("admin_name", data.admin_name);
 					localStorage.setItem("token", data.token);
 					navigate("/dashboard");
+				} else {
+					setmessage(data.message);
+					setcolor("red");
 				}
 			})
 			.catch((err) => {
@@ -89,7 +97,17 @@ const Login = () => {
 								</Link>
 							</div>
 						</div>
-						<CustomButton> Login </CustomButton>
+						{message && (
+							<div
+								className="text-center p-4 my-8 rounded-lg w-full"
+								style={{ backgroundColor: color }}
+							>
+								<p className="text-white">{message}</p>
+							</div>
+						)}
+						<CustomButton>
+							{loader ? "Please wait..." : "Login"}
+						</CustomButton>
 					</form>
 				</div>
 			</div>
