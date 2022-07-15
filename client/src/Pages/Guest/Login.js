@@ -29,6 +29,7 @@ const Login = () => {
 		e.preventDefault();
 		setloader(true);
 		if (data.admin_name === "" || data.password === "") {
+            setloader(false);
 			setmessage("All fields are required");
 			return null;
 		}
