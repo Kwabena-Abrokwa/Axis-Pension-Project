@@ -9,23 +9,25 @@ const TableComponent = ({ id, img, name, email, telephone, date }) => {
 					<Link to={`/employee-profile/${id}`}>{id}</Link>
 				</td>
 				<td className="py-4 px-6 text-sm font-medium text-black whitespace-nowrap ">
-					<img
-						src={img}
-						alt="Employee Profile"
-						className="w-16 h-16 rounded-full"
-					/>
+					<Link to={`/employee-profile/${id}`}>
+						<img
+							src={img}
+							alt="Employee Profile"
+							className="w-16 h-16 rounded-full"
+						/>
+					</Link>
 				</td>
 				<td className="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
-					{name}
+					<Link to={`/employee-profile/${id}`}>{name}</Link>
 				</td>
 				<td className="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
-					{email}
+					<Link to={`/employee-profile/${id}`}>{email}</Link>
 				</td>
 				<td className="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
-					{telephone}
+					<Link to={`/employee-profile/${id}`}>{telephone}</Link>
 				</td>
 				<td className="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
-					{date}
+					<Link to={`/employee-profile/${id}`}>{date}</Link>
 				</td>
 			</tr>
 		</>
