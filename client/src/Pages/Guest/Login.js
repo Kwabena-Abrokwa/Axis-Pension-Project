@@ -1,7 +1,7 @@
 import React from "react";
 import CustomButton from "../../Components/Customs/CustomButton";
 import CustomInput from "../../Components/Customs/CustomInput";
-import logo from "../../Assets/Logo/icon.png";
+import logo from "../../Assets/Logo/logo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
