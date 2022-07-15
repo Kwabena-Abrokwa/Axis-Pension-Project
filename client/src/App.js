@@ -1,9 +1,11 @@
 import "./App.css";
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import EmployeeProfile from "./Pages/Auth/EmployeeProfile";
 const Login = React.lazy(() => import("./Pages/Guest/Login"));
 const HomeDashboard = React.lazy(() => import("./Pages/Auth/HomeDashboard"));
+const EmployeeProfile = React.lazy(() =>
+	import("./Pages/Auth/EmployeeProfile")
+);
 
 function App() {
 	return (
