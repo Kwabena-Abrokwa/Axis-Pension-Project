@@ -276,7 +276,7 @@ const EmployeeProfile = () => {
 						>
 							<div className="profile">
 								<img
-									src={`../../Assets/Employees/${items.img}`}
+									src={`../../../../server/uploads/${items.img}`}
 									alt="Employee Profile"
 									className="w-80 h-80 rounded-full"
 								/>

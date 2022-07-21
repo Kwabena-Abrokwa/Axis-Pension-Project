@@ -49,8 +49,8 @@ router.get("/getSingleEmployee/:id", AdminMiddleware, getSingleEmployee);
 //This routes helps to create employees bio
 router.post(
 	"/createEmployeeBio",
-	upload.single("img"),
 	AdminMiddleware,
+	upload.single("img"),
 	createEmployeeBio
 );
 
