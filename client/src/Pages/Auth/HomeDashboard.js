@@ -20,7 +20,7 @@ const HomeDashboard = () => {
 		SSNIT_no: "",
 		dob: "",
 		gender: "Male",
-		maritial_status: "",
+		maritial_status: "Married",
 		address: "",
 		appointment_date: "",
 		img: "",

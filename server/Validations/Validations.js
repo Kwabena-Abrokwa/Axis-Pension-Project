@@ -2,7 +2,6 @@ import Joi from "joi";
 
 export const createEmployeeBioValidation = (data) => {
 	const employeeBioValidationScheme = Joi.object({
-		staff_no: Joi.string().required(),
 		title: Joi.string().required(),
 		surname: Joi.string().required(),
 		other_name: Joi.string().required(),
@@ -15,6 +14,7 @@ export const createEmployeeBioValidation = (data) => {
 		maritial_status: Joi.string().required(),
 		address: Joi.string().required(),
 		appointment_date: Joi.date().required(),
+		img: Joi.allow("")
 	});
 
 	return employeeBioValidationScheme.validate(data);
