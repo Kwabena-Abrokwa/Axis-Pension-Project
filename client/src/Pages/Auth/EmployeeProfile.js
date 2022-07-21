@@ -49,7 +49,9 @@ const EmployeeProfile = () => {
 	//get all employees here
 	const getSingleEmployee = async () => {
 		await axios
-			.get(`${BACKEND_URL}/getSingleEmployee/${id}`)
+			.get(`${BACKEND_URL}/getSingleEmployee/${id}`, {
+				headers: { "auth-admin-token": localStorage.getItem("token") },
+			})
 			.then(({ data }) => {
 				if (data.success === false) {
 					return null;
@@ -64,7 +66,9 @@ const EmployeeProfile = () => {
 
 	const getAppointmentDetails = async () => {
 		await axios
-			.get(`${BACKEND_URL}/getAppointmentDetails/${id}`)
+			.get(`${BACKEND_URL}/getAppointmentDetails/${id}`, {
+				headers: { "auth-admin-token": localStorage.getItem("token") },
+			})
 			.then(({ data }) => {
 				if (data.success === false) {
 					return null;
@@ -98,10 +102,9 @@ const EmployeeProfile = () => {
 			return null;
 		}
 		axios
-			.post(
-				`${BACKEND_URL}/createEmployeeEmploymentDetails`,
-				data
-			)
+			.post(`${BACKEND_URL}/createEmployeeEmploymentDetails`, data, {
+				headers: { "auth-admin-token": localStorage.getItem("token") },
+			})
 			.then(({ data }) => {
 				if (data.success === true) {
 					setcolor("green");

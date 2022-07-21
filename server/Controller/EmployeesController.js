@@ -1,5 +1,8 @@
 import mysql from "mysql";
-import bcrypt from "bcryptjs";
+import {
+	createEmployeeBioValidation,
+	createEmployeeAppointmentDetailsValidation,
+} from "../Validations/Validations.js";
 
 const db = mysql.createConnection({
 	user: "root",
@@ -9,6 +12,9 @@ const db = mysql.createConnection({
 });
 
 export const createEmployeeBio = async (req, res) => {
+	const { error } = createEmployeeBioValidation(req.body);
+	if (error) return res.status(400).send(error.details[0].message);
+
 	const staff_no = Math.floor(200);
 	const title = req.body.title;
 	const surname = req.body.surname;
@@ -115,6 +121,9 @@ export const getAppointmentDetails = async (req, res) => {
 };
 
 export const createEmployeeAppointmentDetails = async (req, res) => {
+	const { error } = createEmployeeAppointmentDetailsValidation(req.body);
+	if (error) return res.status(400).send(error.details[0].message);
+
 	const employee_id = req.body.employee_id;
 	const designation = req.body.designation;
 	const job_grade = req.body.job_grade;

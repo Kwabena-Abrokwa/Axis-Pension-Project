@@ -8,6 +8,7 @@ import {
 	getAppointmentDetails,
 	getSingleEmployee,
 } from "../Controller/EmployeesController.js";
+import AdminMiddleware from "../Middlewares/AdminMiddleware.js";
 
 const storage = multer.diskStorage({
 	destination: "../../client/src/Assets/Employees",
@@ -41,19 +42,29 @@ const router = express.Router();
 router.post("/createAdmin", createAnAdmin);
 
 //This routes helps to create employees bio
-router.get("/getAllEmployees", getAllEmployees);
+router.get("/getAllEmployees", AdminMiddleware, getAllEmployees);
 
-router.get("/getSingleEmployee/:id", getSingleEmployee);
+router.get("/getSingleEmployee/:id", AdminMiddleware, getSingleEmployee);
 
 //This routes helps to create employees bio
-router.post("/createEmployeeBio", upload.single("img"), createEmployeeBio);
+router.post(
+	"/createEmployeeBio",
+	AdminMiddleware,
+	upload.single("img"),
+	createEmployeeBio
+);
 
 //This routes helps to add employees appointment details
 router.post(
 	"/createEmployeeEmploymentDetails",
+	AdminMiddleware,
 	createEmployeeAppointmentDetails
 );
-router.get("/getAppointmentDetails/:id", getAppointmentDetails);
+router.get(
+	"/getAppointmentDetails/:id",
+	AdminMiddleware,
+	getAppointmentDetails
+);
 
 //This routes helps to authenticate admins before they login
 router.post("/loginAdmin", loginAdmin);

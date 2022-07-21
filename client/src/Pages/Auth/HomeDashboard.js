@@ -82,6 +82,7 @@ const HomeDashboard = () => {
 			.post(`${BACKEND_URL}/createEmployeeBio`, data, {
 				headers: {
 					"Content-Type": "multipart/form-data",
+					"auth-admin-token": localStorage.getItem("token") ,
 				},
 			})
 			.then(({ data }) => {
@@ -107,7 +108,9 @@ const HomeDashboard = () => {
 	//get all employees here
 	const getAllEmployees = async () => {
 		await axios
-			.get(`${BACKEND_URL}/getAllEmployees`)
+			.get(`${BACKEND_URL}/getAllEmployees`, {
+				headers: { "auth-admin-token": localStorage.getItem("token") },
+			})
 			.then(({ data }) => {
 				if (data.success === false) {
 					setmessage(data.message);

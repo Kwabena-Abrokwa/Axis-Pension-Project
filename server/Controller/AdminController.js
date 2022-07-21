@@ -9,7 +9,6 @@ const db = mysql.createConnection({
 	database: "axis-project",
 });
 
-
 export const createAnAdmin = async (req, res) => {
 	const admin_name = req.body.admin_name;
 	const password = req.body.password;
@@ -35,7 +34,6 @@ export const createAnAdmin = async (req, res) => {
 	});
 };
 
-
 export const loginAdmin = async (req, res) => {
 	const admin_name = req.body.admin_name;
 	const password = req.body.password;
@@ -57,15 +55,16 @@ export const loginAdmin = async (req, res) => {
 						const name = result[0].admin_name;
 						const token = Jwt.sign(
 							{ admin_Id, name },
-							"1244553345Ggfs$",
-							{ expiresIn: 300 }
+							process.env.SECRET_TOKEN_ADMIN
 						);
 
-						res.status(200).json({
-							auth: 1,
-							token: token,
-							admin_name: admin_name,
-						});
+						res.status(200)
+							.header("auth-admin-token", token)
+							.json({
+								auth: 1,
+								token: token,
+								admin_name: admin_name,
+							});
 					} else {
 						res.json({
 							auth: 0,
@@ -74,7 +73,7 @@ export const loginAdmin = async (req, res) => {
 					}
 				});
 			} else {
-				res.json({ auth: 0, message: "No user found" });
+				res.status(400).json({ auth: 0, message: "No user found" });
 			}
 		}
 	);

@@ -2,11 +2,14 @@ import express from "express";
 import cors from "cors";
 import AdminRouter from "./Routes/AdminRoutes.js";
 import multer from "multer"
+import dotenv from "dotenv";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+//env file configuration
+dotenv.config();
 
 //This route just confirms whether the server is running or not
 app.get("/", (req, res) => {
