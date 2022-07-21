@@ -397,6 +397,7 @@ const HomeDashboard = () => {
 											{employeeBio &&
 												employeeBio.map((items) => (
 													<TableComponent
+														key={items.id}
 														id={items.id}
 														name={
 															items.surname + items.other_names
