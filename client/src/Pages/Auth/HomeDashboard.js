@@ -7,6 +7,7 @@ import CustomSelect from "../../Components/Customs/CustomSelect";
 import { MdClose } from "react-icons/md";
 import { BACKEND_URL } from "../../API/URL";
 import axios from "axios";
+import { FaUpload } from "react-icons/fa";
 
 const HomeDashboard = () => {
 	const [data, setdata] = useState({
@@ -82,7 +83,7 @@ const HomeDashboard = () => {
 			.post(`${BACKEND_URL}/createEmployeeBio`, data, {
 				headers: {
 					"Content-Type": "multipart/form-data",
-					"auth-admin-token": localStorage.getItem("token") ,
+					"auth-admin-token": localStorage.getItem("token"),
 				},
 			})
 			.then(({ data }) => {
@@ -288,23 +289,40 @@ const HomeDashboard = () => {
 								<label className="text-md font-semibold">
 									Employee Passport Photo
 								</label>
-								<CustomInput
+							</div>
+
+							<div className="w-full relative rounded-md border-gray-400 h-40 cursor-pointer bg-[#F6F6F6] mt-2">
+								{images.length < 1 ? (
+									<div className="py-6 absolute left-[25%] lg:left-[32%] cursor-pointer z-2">
+										<div>
+											<h3 className="text-center my-2">
+												Upload Passport Photo
+											</h3>
+											<div className="w-1/6 mx-auto">
+												<FaUpload size={25} />
+											</div>
+										</div>
+									</div>
+								) : null}
+								{images && (
+									<div className="">
+										{" "}
+										<img
+											src={images}
+											alt="Images"
+											className="w-full h-40"
+										/>{" "}
+									</div>
+								)}
+
+								<input
 									type={"file"}
-									value={data.img}
+									className="absolute top-0 left-0 opacity-0 w-full h-full z-50 cursor-pointer"
+									onChange={handleImage}
 									name={"img"}
-									handleChange={handleImage}
+									accept="image/*"
 								/>
 							</div>
-							{images && (
-								<div className="">
-									{" "}
-									<img
-										src={images}
-										alt="Images"
-										className="w-full h-40"
-									/>{" "}
-								</div>
-							)}
 							{message && (
 								<div
 									className="text-center p-4 my-8 rounded-lg w-full"
