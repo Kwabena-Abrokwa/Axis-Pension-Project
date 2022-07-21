@@ -131,7 +131,7 @@ const HomeDashboard = () => {
 
 	useEffect(() => {
 		getAllEmployees();
-	}, []);
+	});
 
 	return (
 		<DashboardLayout>

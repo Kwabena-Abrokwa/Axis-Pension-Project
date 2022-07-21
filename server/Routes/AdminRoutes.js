@@ -11,7 +11,7 @@ import {
 import AdminMiddleware from "../Middlewares/AdminMiddleware.js";
 
 const storage = multer.diskStorage({
-	destination: "../../client/src/Assets/Employees",
+	destination: "uploads",
 	filename: function (req, file, cb) {
 		const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
 		return cb(null, uniqueSuffix + file.originalname);
@@ -49,8 +49,8 @@ router.get("/getSingleEmployee/:id", AdminMiddleware, getSingleEmployee);
 //This routes helps to create employees bio
 router.post(
 	"/createEmployeeBio",
-	AdminMiddleware,
 	upload.single("img"),
+	AdminMiddleware,
 	createEmployeeBio
 );
 

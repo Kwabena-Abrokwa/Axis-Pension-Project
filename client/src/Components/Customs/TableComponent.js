@@ -11,7 +11,7 @@ const TableComponent = ({ id, img, name, email, telephone, date }) => {
 				<td className="py-4 px-6 text-sm font-medium text-black whitespace-nowrap ">
 					<Link to={`/employee-profile/${id}`}>
 						<img
-							src={img}
+							src={`../../../../server/uploads/${img}`}
 							alt="Employee Profile"
 							className="w-16 h-16 rounded-full"
 						/>
